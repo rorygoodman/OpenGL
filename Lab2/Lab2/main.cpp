@@ -163,7 +163,7 @@ int main()
         
         // Draw our first triangle
         glUseProgram( shaderProgram );
-        w
+        
         
         //transform = glm::translate(transform, glm::vec3(0.5f,0.5f,0.0f));
         if(mode==0){
@@ -202,6 +202,35 @@ int main()
             transform = glm::translate(transform, glm::vec3(0.0f,0.0f,-0.1f));
             mode=0;
         }
+        else if(mode ==10){
+            transform= glm::scale(transform, glm::vec3(1.5f,1.5f,1.5f));
+            mode=0;
+        }
+        else if(mode ==11){
+            transform= glm::scale(transform, glm::vec3(0.5f,0.5f,0.5f));
+            mode=0;
+        }
+        else if(mode ==12){
+            transform= glm::scale(transform, glm::vec3(1.0f,0.5f,1.0f));
+            mode=0;
+        }
+        else if(mode ==13){
+            transform= glm::scale(transform, glm::vec3(1.0f,1.5f,1.0f));
+            mode=0;
+        }
+        else if(mode ==14){
+            transform= glm::scale(transform, glm::vec3(0.5f,1.0f,0.0f));
+            mode=0;
+        }
+        else if(mode ==15){
+            transform= glm::scale(transform, glm::vec3(1.5f,1.0f,1.0f));
+            mode=0;
+        }
+        else{
+            
+        }
+        
+        
         
        
         GLint transformLocation = glGetUniformLocation(shaderProgram,"transform");
@@ -256,5 +285,24 @@ void keyCallback(GLFWwindow *window,int key, int scancode, int action, int mods)
     else if(key==80){
         mode=9;
     }
+    else if(key==66){
+        mode=10;
+    }
+    else if(key==83){
+        mode=11;
+    }
+    else if(key==72){
+        mode=12;
+    }
+    else if(key==74){
+        mode=13;
+    }
+    else if(key==75){
+        mode=14;
+    }
+    else if(key==76){
+        mode=15;
+    }
+    
     else{}
 }
