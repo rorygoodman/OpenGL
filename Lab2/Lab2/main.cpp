@@ -7,15 +7,21 @@
 // GLFW
 #include <GLFW/glfw3.h>
 
+//GLM
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 // Window dimensions
 const GLuint WIDTH = 800, HEIGHT = 600;
 
 // Shaders
 const GLchar* vertexShaderSource = "#version 330 core\n"
 "layout (location = 0) in vec3 position;\n"
+"uniform mat4 transform;\n"
 "void main()\n"
 "{\n"
-"gl_Position = vec4(position.x, position.y, position.z, 1.0);\n"
+"gl_Position = transform * vec4(position.x, position.y, position.z, 1.0);\n"
 "}\0";
 const GLchar* fragmentShaderSource = "#version 330 core\n"
 "out vec4 color;\n"
@@ -23,8 +29,9 @@ const GLchar* fragmentShaderSource = "#version 330 core\n"
 "{\n"
 "color = vec4(1.0f, 0.5f, 0.2f, 1.0f);\n"
 "}\n\0";
-
+int mode = 0;
 // The MAIN function, from here we start the application and run the game loop
+void keyCallback(GLFWwindow *window,int key, int scancode, int action, int mods);
 int main()
 {
     // Init GLFW
@@ -39,7 +46,7 @@ int main()
     glfwWindowHint( GLFW_RESIZABLE, GL_FALSE );
     
     // Create a GLFWwindow object that we can use for GLFW's functions
-    GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "LearnOpenGL", nullptr, nullptr );
+    GLFWwindow *window = glfwCreateWindow( WIDTH, HEIGHT, "Lab2", nullptr, nullptr );
     
     int screenWidth, screenHeight;
     glfwGetFramebufferSize( window, &screenWidth, &screenHeight );
@@ -51,6 +58,8 @@ int main()
         
         return EXIT_FAILURE;
     }
+    
+    glfwSetKeyCallback(window, keyCallback);
     
     glfwMakeContextCurrent( window );
     
@@ -140,7 +149,7 @@ int main()
     glBindBuffer( GL_ARRAY_BUFFER, 0 ); // Note that this is allowed, the call to glVertexAttribPointer registered VBO as the currently bound vertex buffer object so afterwards we can safely unbind
     
     glBindVertexArray( 0 ); // Unbind VAO (it's always a good thing to unbind any buffer/array to prevent strange bugs)
-    
+    glm::mat4 transform;
     // Game loop
     while ( !glfwWindowShouldClose( window ) )
     {
@@ -154,6 +163,50 @@ int main()
         
         // Draw our first triangle
         glUseProgram( shaderProgram );
+        w
+        
+        //transform = glm::translate(transform, glm::vec3(0.5f,0.5f,0.0f));
+        if(mode==0){
+            //transform = glm::translate(transform, glm::vec3(0.0f,0.0f,0.0f));
+        }
+        else if(mode==1){
+             transform = glm::rotate(transform, (GLfloat)glfwGetTime()*5.0f, glm::vec3(0.0f,1.0f,0.0f));
+        }
+        else if(mode==2){
+            transform = glm::rotate(transform, (GLfloat)glfwGetTime()*5.0f, glm::vec3(1.0f,0.0f,0.0f));
+        }
+        else if(mode ==3) {
+            transform = glm::rotate(transform, (GLfloat)glfwGetTime()*5.0f, glm::vec3(0.0f,0.0f,1.0f));
+        }
+        else if(mode ==4){
+            transform = glm::translate(transform, glm::vec3(0.1f,0.0f,0.0f));
+            mode=0;
+        }
+        else if(mode ==5){
+            transform = glm::translate(transform, glm::vec3(-0.1f,0.0f,0.0f));
+            mode=0;
+        }
+        else if(mode ==6){
+            transform = glm::translate(transform, glm::vec3(0.0f,0.1f,0.0f));
+            mode=0;
+        }
+        else if(mode ==7){
+            transform = glm::translate(transform, glm::vec3(0.0f,-0.1f,0.0f));
+            mode=0;
+        }
+        else if(mode ==8){
+            transform = glm::translate(transform, glm::vec3(0.0f,0.0f,0.1f));
+            mode=0;
+        }
+        else if(mode ==9){
+            transform = glm::translate(transform, glm::vec3(0.0f,0.0f,-0.1f));
+            mode=0;
+        }
+        
+       
+        GLint transformLocation = glGetUniformLocation(shaderProgram,"transform");
+        glUniformMatrix4fv(transformLocation, 1, GL_FALSE, glm::value_ptr(transform));
+        
         glBindVertexArray( VAO );
         glDrawArrays( GL_TRIANGLES, 0, 3 );
         glBindVertexArray( 0 );
@@ -170,4 +223,38 @@ int main()
     glfwTerminate( );
     
     return EXIT_SUCCESS;
+}
+void keyCallback(GLFWwindow *window,int key, int scancode, int action, int mods){
+    std::cout<< key << std::endl;
+    if(key==81){
+        mode=0;
+    }
+    else if(key==87){
+        mode=1;
+    }
+    else if(key==69){
+        mode=2;
+    }
+    else if(key==82){
+        mode=3;
+    }
+    else if(key==84){
+        mode=4;
+    }
+    else if(key==89){
+        mode=5;
+    }
+    else if(key==85){
+        mode=6;
+    }
+    else if(key==73){
+        mode=7;
+    }
+    else if(key==79){
+        mode=8;
+    }
+    else if(key==80){
+        mode=9;
+    }
+    else{}
 }

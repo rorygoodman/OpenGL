@@ -11,6 +11,7 @@
 		473092811F952F0D000CD2D3 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 473092801F952F0D000CD2D3 /* OpenGL.framework */; };
 		473092831F952F40000CD2D3 /* libGLEW.2.1.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 473092821F952F40000CD2D3 /* libGLEW.2.1.0.dylib */; };
 		473092851F952F6E000CD2D3 /* libglfw.3.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 473092841F952F6E000CD2D3 /* libglfw.3.2.dylib */; };
+		473092891F95834F000CD2D3 /* glm.pc in Frameworks */ = {isa = PBXBuildFile; fileRef = 473092881F95834F000CD2D3 /* glm.pc */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		473092801F952F0D000CD2D3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		473092821F952F40000CD2D3 /* libGLEW.2.1.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libGLEW.2.1.0.dylib; path = ../../../../../usr/local/Cellar/glew/2.1.0/lib/libGLEW.2.1.0.dylib; sourceTree = "<group>"; };
 		473092841F952F6E000CD2D3 /* libglfw.3.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libglfw.3.2.dylib; path = ../../../../../usr/local/Cellar/glfw/3.2.1/lib/libglfw.3.2.dylib; sourceTree = "<group>"; };
+		473092861F95827B000CD2D3 /* include */ = {isa = PBXFileReference; lastKnownFileType = folder; name = include; path = ../../../../../usr/local/Cellar/glm/0.9.8.5/include; sourceTree = "<group>"; };
+		473092881F95834F000CD2D3 /* glm.pc */ = {isa = PBXFileReference; lastKnownFileType = text; name = glm.pc; path = ../../../../../usr/local/Cellar/glm/0.9.8.5/lib/pkgconfig/glm.pc; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				473092891F95834F000CD2D3 /* glm.pc in Frameworks */,
 				473092851F952F6E000CD2D3 /* libglfw.3.2.dylib in Frameworks */,
 				473092831F952F40000CD2D3 /* libGLEW.2.1.0.dylib in Frameworks */,
 				473092811F952F0D000CD2D3 /* OpenGL.framework in Frameworks */,
@@ -75,6 +79,8 @@
 		4730927F1F952F0C000CD2D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				473092881F95834F000CD2D3 /* glm.pc */,
+				473092861F95827B000CD2D3 /* include */,
 				473092841F952F6E000CD2D3 /* libglfw.3.2.dylib */,
 				473092821F952F40000CD2D3 /* libGLEW.2.1.0.dylib */,
 				473092801F952F0D000CD2D3 /* OpenGL.framework */,
