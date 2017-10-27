@@ -181,10 +181,16 @@ void display(){
 	mat4 model1 = rotate_z_deg (identity_mat4 (), glutGet(GLUT_ELAPSED_TIME)*0.1);
 
 	mat4 view2 = translate(identity_mat4(), vec3(0.0, 0.0, -40.0));
-	mat4 ortho_proj2 = mat4(-30,0,0,0,
-		0,0,0,0
-		,0,0,0,0,
-		0,0,0,0);
+	GLfloat left = -30.0;
+	GLfloat right = 40.0;
+	GLfloat bottom = -30.0;
+	GLfloat top = 30.0;
+	GLfloat near_val = -100.0;
+	GLfloat far_val = 100.0;
+	mat4 ortho_proj2 = mat4((GLfloat)2/(right-left),0,0,-((left+right)/(right-left)),
+		0, (GLfloat)2 / (top-bottom),0, -((top + bottom) / (top-bottom))
+		,0,0, (GLfloat)-2 / (far_val-near_val), -((far_val+near_val) / (far_val-near_val)),
+		0,0,0,1);
 	mat4 model2 = rotate_z_deg(identity_mat4(), 0);
 
 	mat4 view3 = translate(identity_mat4(), vec3(0.0, 0.0, -40.0));
